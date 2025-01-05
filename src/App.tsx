@@ -1,34 +1,18 @@
-import { Toaster } from "@/components/ui/toaster"
-    import { Toaster as Sonner } from "@/components/ui/sonner"
-    import { TooltipProvider } from "@/components/ui/tooltip"
-    import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-    import { BrowserRouter, Routes, Route } from "react-router-dom"
-    import Navbar from "./components/Navbar"
-    import Index from "./pages/Index"
-    import Configure from "./pages/Configure"
-    import Cart from "./pages/Cart"
-    import Components from "./pages/Components"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Index from "./pages/Index";
+import Configurator from "./pages/Configurator";
+import { Navbar } from "@/components/Navbar";
 
-    const queryClient = new QueryClient()
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/configurator" element={<Configurator />} />
+      </Routes>
+    </Router>
+  );
+}
 
-    const App = () => (
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <div className="min-h-screen bg-background text-foreground">
-            <BrowserRouter>
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/configure" element={<Configure />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/components" element={<Components />} />
-              </Routes>
-            </BrowserRouter>
-          </div>
-          <Toaster />
-          <Sonner />
-        </TooltipProvider>
-      </QueryClientProvider>
-    )
-
-    export default App
+export default App;

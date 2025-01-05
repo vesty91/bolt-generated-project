@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/ecd0c2f7-9a1a-42dd-a62a-3d9647bd921e
+**URL**: https://lovable.dev/projects/1793b76b-ddde-43e0-b1f3-f80e9213dd66
 
 ## How can I edit this code?
 
@@ -10,7 +10,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ecd0c2f7-9a1a-42dd-a62a-3d9647bd921e) and start prompting.
+Simply visit the [Lovable Project](https://lovable.dev/projects/1793b76b-ddde-43e0-b1f3-f80e9213dd66) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -36,23 +36,23 @@ npm i
 npm run dev
 ```
 
-**Modifier un fichier directement dans GitHub**
+**Edit a file directly in GitHub**
 
-- Accédez au ou aux fichiers souhaités.
-- Cliquez sur le bouton "Modifier" (icône en forme de crayon) en haut à droite de la vue du fichier.
-- Faites vos changements et validez les changements.
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-**Utiliser les codespaces GitHub**
+**Use GitHub Codespaces**
 
-- Accédez à la page principale de votre dépôt.
-- Cliquez sur le bouton "Code" (vert) en haut à droite.
-- Sélectionnez l’onglet "Codespaces".
-- Cliquez sur "Nouveau codespace" pour lancer un nouvel environnement Codespace.
-- Modifier les fichiers directement dans le Codespace et valider et pousser vos modifications une fois que vous avez terminé.
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## Quelles technologies sont utilisées pour ce projet?
+## What technologies are used for this project?
 
-Ce projet est construit avec .
+This project is built with .
 
 - Vite
 - TypeScript
@@ -60,10 +60,10 @@ Ce projet est construit avec .
 - shadcn-ui
 - Tailwind CSS
 
-## Comment puis-je déployer ce projet ?
+## How can I deploy this project?
 
-Il suffit d’ouvrir [Lovable] (https://lovable.dev/projects/ecd0c2f7-9a1a-42dd-a62a-3d9647bd921e) et de cliquer sur Partager -> Publier.
+Simply open [Lovable](https://lovable.dev/projects/1793b76b-ddde-43e0-b1f3-f80e9213dd66) and click on Share -> Publish.
 
-## Je veux utiliser un domaine personnalisé - est-ce possible?
+## I want to use a custom domain - is that possible?
 
-Nous ne prenons pas en charge les domaines personnalisés (pour l’instant). Si vous souhaitez déployer votre projet sous votre propre domaine, nous vous recommandons d’utiliser Netlify. Consultez notre documentation pour plus de détails : [Custom domains] (https://docs.lovable.dev/tips-tricks/custom-domain/)
+We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)

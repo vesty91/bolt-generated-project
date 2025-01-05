@@ -1,53 +1,71 @@
-import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Logo from './navbar/Logo';
-import DesktopMenu from './navbar/DesktopMenu';
-import MobileMenu from './navbar/MobileMenu';
-import { MenuItem } from './navbar/types';
+import { ShoppingCart, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-
-  const menuItems: MenuItem[] = [
-    { name: 'Accueil', path: '/' },
-    { name: 'Configurer votre PC', path: '/configure' },
-    { name: 'Composants', path: '/components' },
-    { name: 'Configurations préconçues', path: '/prebuilt' },
-    { name: 'Mon compte', path: '/account' },
-    { name: 'Assistance', path: '/support' },
-  ];
+export const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-card shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Logo />
-          
-          <DesktopMenu menuItems={menuItems} cartCount={cartCount} />
+    <nav className="bg-primary text-primary-foreground py-4 px-6 fixed w-full top-0 z-50">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="flex items-center">
+          <h1 className="text-xl font-bold">ConfigMaster Pro</h1>
+        </div>
 
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-6">
+          <a href="/" className="hover:text-secondary transition-colors">
+            Accueil
+          </a>
+          <a href="/configurator" className="hover:text-secondary transition-colors">
+            Configurateur
+          </a>
+          <a href="/categories" className="hover:text-secondary transition-colors">
+            Catégories
+          </a>
+          <a href="/account" className="hover:text-secondary transition-colors">
+            Mon Compte
+          </a>
+          <Button variant="secondary" size="sm" className="flex items-center gap-2">
+            <ShoppingCart className="w-4 h-4" />
+            <span>Panier (0)</span>
+          </Button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          className="md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <Menu className="w-6 h-6" />
+        </Button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-primary py-4 px-6 animate-fadeIn">
+          <div className="flex flex-col space-y-4">
+            <a href="/" className="hover:text-secondary transition-colors">
+              Accueil
+            </a>
+            <a href="/configurator" className="hover:text-secondary transition-colors">
+              Configurateur
+            </a>
+            <a href="/categories" className="hover:text-secondary transition-colors">
+              Catégories
+            </a>
+            <a href="/account" className="hover:text-secondary transition-colors">
+              Mon Compte
+            </a>
+            <Button variant="secondary" size="sm" className="flex items-center gap-2">
+              <ShoppingCart className="w-4 h-4" />
+              <span>Panier (0)</span>
             </Button>
           </div>
         </div>
-      </div>
-
-      <MobileMenu 
-        isOpen={isOpen}
-        menuItems={menuItems}
-        cartCount={cartCount}
-        onItemClick={() => setIsOpen(false)}
-      />
+      )}
     </nav>
   );
 };
-
-export default Navbar;
