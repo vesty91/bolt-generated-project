@@ -4,7 +4,7 @@ import React, { useState } from 'react';
     import { CreditCard as CreditCardIcon, Wallet } from 'lucide-react';
 
     const CartPage = () => {
-      const { cartItems, getTotalPrice } = useCart();
+      const { cartItems, getTotalPrice, clearCart } = useCart();
       const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string | null>(null);
 
       const paymentMethods = [
@@ -63,6 +63,14 @@ import React, { useState } from 'react';
                     Proceed to Checkout
                   </button>
                 </div>
+              </div>
+              <div className="flex justify-end mt-4">
+                <button
+                  onClick={clearCart}
+                  className="text-red-500 hover:text-red-700 transition-colors px-3 py-1 rounded-md"
+                >
+                  Clear Cart
+                </button>
               </div>
             </div>
           )}

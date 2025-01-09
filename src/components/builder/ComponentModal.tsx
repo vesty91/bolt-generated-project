@@ -45,6 +45,110 @@ import React from 'react';
                     </li>
                   ))}
                 </ul>
+                {component.category === 'CPU' && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Limitations:</h3>
+                    <ul className="list-disc list-inside text-gray-600">
+                      <li>
+                        Requires a compatible motherboard with the same socket type.
+                      </li>
+                      <li>
+                        May require a high-end cooler for optimal performance.
+                      </li>
+                    </ul>
+                  </div>
+                )}
+                {component.category === 'MOTHERBOARD' && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Limitations:</h3>
+                    <ul className="list-disc list-inside text-gray-600">
+                      <li>
+                        Only compatible with CPUs that have the same socket type.
+                      </li>
+                      <li>
+                        Limited by the number of RAM slots and maximum supported memory.
+                      </li>
+                    </ul>
+                  </div>
+                )}
+                {component.category === 'RAM' && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Limitations:</h3>
+                    <ul className="list-disc list-inside text-gray-600">
+                      <li>
+                        Must be compatible with the motherboard's memory type (DDR4, DDR5).
+                      </li>
+                      <li>
+                        Speed and timing must be supported by the motherboard and CPU.
+                      </li>
+                    </ul>
+                  </div>
+                )}
+                {component.category === 'GPU' && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Limitations:</h3>
+                    <ul className="list-disc list-inside text-gray-600">
+                      <li>
+                        Requires a power supply with sufficient wattage.
+                      </li>
+                      <li>
+                        May be limited by the case's maximum GPU length.
+                      </li>
+                    </ul>
+                  </div>
+                )}
+                {component.category === 'STORAGE' && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Limitations:</h3>
+                    <ul className="list-disc list-inside text-gray-600">
+                      <li>
+                        Must be compatible with the motherboard's storage interface (SATA, NVMe).
+                      </li>
+                      <li>
+                        May be limited by the number of available storage slots.
+                      </li>
+                    </ul>
+                  </div>
+                )}
+                {component.category === 'PSU' && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Limitations:</h3>
+                    <ul className="list-disc list-inside text-gray-600">
+                      <li>
+                        Must provide sufficient wattage for all components.
+                      </li>
+                      <li>
+                        May be limited by the case's PSU form factor.
+                      </li>
+                    </ul>
+                  </div>
+                )}
+                {component.category === 'CASE' && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Limitations:</h3>
+                    <ul className="list-disc list-inside text-gray-600">
+                      <li>
+                        Must be compatible with the motherboard's form factor (ATX, Micro-ATX, Mini-ITX).
+                      </li>
+                      <li>
+                        Limited by the maximum GPU length and CPU cooler height.
+                      </li>
+                    </ul>
+                  </div>
+                )}
+                {component.category === 'COOLING' && (
+                  <div className="mt-4">
+                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Limitations:</h3>
+                    <ul className="list-disc list-inside text-gray-600">
+                      <li>
+                        Must be compatible with the CPU socket.
+                      </li>
+                      <li>
+                        May be limited by the case's CPU cooler height.
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </div>

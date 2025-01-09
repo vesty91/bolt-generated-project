@@ -8,12 +8,16 @@ import { useBuildContext } from '../context/BuildContext';
         const cpu = selectedComponents[ComponentCategory.CPU];
         const motherboard = selectedComponents[ComponentCategory.MOTHERBOARD];
 
-        if (!cpu || !motherboard) return true;
+        if (!cpu || !motherboard) return { compatible: true, message: null };
 
         const intelSocket = motherboard.specs.socket === 'LGA 1700' && cpu.brand === 'Intel';
         const amdSocket = motherboard.specs.socket === 'AM5' && cpu.brand === 'AMD';
 
-        return intelSocket || amdSocket;
+        if (intelSocket || amdSocket) {
+          return { compatible: true, message: null };
+        } else {
+          return { compatible: false, message: 'CPU and motherboard socket are incompatible' };
+        }
       };
 
       const checkPowerRequirements = () => {
@@ -21,7 +25,7 @@ import { useBuildContext } from '../context/BuildContext';
         const gpu = selectedComponents[ComponentCategory.GPU];
         const cpu = selectedComponents[ComponentCategory.CPU];
 
-        if (!psu) return true;
+        if (!psu) return { compatible: true, message: null };
 
         const psuWattage = parseInt(psu.specs.wattage);
         const gpuPower = gpu ? parseInt(gpu.specs.tdp) : 0;
@@ -29,7 +33,11 @@ import { useBuildContext } from '../context/BuildContext';
         const baseSystemPower = 150; // For other components
 
         const totalPower = gpuPower + cpuPower + baseSystemPower;
-        return psuWattage >= totalPower;
+        if (psuWattage >= totalPower) {
+          return { compatible: true, message: null };
+        } else {
+          return { compatible: false, message: 'Power supply wattage may be insufficient' };
+        }
       };
 
       const getTotalWattage = () => {
@@ -44,13 +52,15 @@ import { useBuildContext } from '../context/BuildContext';
 
       const getCompatibilityIssues = () => {
         const issues = [];
+        const socketCheck = checkSocketCompatibility();
+        const powerCheck = checkPowerRequirements();
 
-        if (!checkSocketCompatibility()) {
-          issues.push('CPU and motherboard socket are incompatible');
+        if (!socketCheck.compatible && socketCheck.message) {
+          issues.push(socketCheck.message);
         }
 
-        if (!checkPowerRequirements()) {
-          issues.push('Power supply wattage may be insufficient');
+        if (!powerCheck.compatible && powerCheck.message) {
+          issues.push(powerCheck.message);
         }
 
         return issues;

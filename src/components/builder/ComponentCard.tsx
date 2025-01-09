@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
     import { Component } from '../../types';
     import { useBuildContext } from '../../context/BuildContext';
     import ComponentSpecs from './ComponentSpecs';
@@ -6,6 +6,7 @@ import React from 'react';
     import StockStatus from './StockStatus';
     import { Check } from 'lucide-react';
     import ComponentModal from './ComponentModal';
+    import { useCart } from '../../context/CartContext';
 
     interface ComponentCardProps {
       component: Component;
@@ -15,6 +16,9 @@ import React from 'react';
       const { selectComponent, selectedComponents } = useBuildContext();
       const isSelected = selectedComponents[component.category]?.id === component.id;
       const [isModalOpen, setIsModalOpen] = React.useState(false);
+      const { addToCart } = useCart();
+      const [quantity, setQuantity] = useState(1);
+      const [confirmationMessage, setConfirmationMessage] = useState<string | null>(null);
 
       const handleCardClick = () => {
         setIsModalOpen(true);
@@ -27,6 +31,21 @@ import React from 'react';
 
       const handleCloseModal = () => {
         setIsModalOpen(false);
+      };
+
+      const handleAddToCart = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        const prebuiltConfig = {
+          id: component.id,
+          name: component.name,
+          category: component.category,
+          price: component.price,
+          imageUrl: component.imageUrl,
+          highlights: component.specs,
+        };
+        addToCart(prebuiltConfig);
+        setConfirmationMessage('Added to cart!');
+        setTimeout(() => setConfirmationMessage(null), 2000);
       };
 
       return (
@@ -56,27 +75,41 @@ import React from 'react';
                 <ComponentSpecs component={component} />
 
                 <div className="mt-3 flex justify-between items-center">
-                  <span className="font-bold text-cyan-600">${component.price}</span>
-                  <button
-                    onClick={handleSelect}
-                    className={`
-                      px-3 py-1 rounded text-sm font-medium transition-all flex items-center gap-1
-                      ${isSelected
-                        ? 'bg-cyan-600 text-white'
-                        : 'bg-cyan-100 text-cyan-700 hover:bg-cyan-200'
-                      }
-                    `}
-                  >
-                    {isSelected ? (
-                      <>
-                        <Check className="w-4 h-4" />
-                        Selected
-                      </>
-                    ) : (
-                      'Select'
-                    )}
-                  </button>
+                  <span className="font-bold text-cyan-600">€{component.price}</span>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="number"
+                      min="1"
+                      value={quantity}
+                      onChange={(e) => setQuantity(parseInt(e.target.value))}
+                      className="w-16 p-1 border rounded-md text-sm text-gray-700"
+                    />
+                    <button
+                      onClick={handleAddToCart}
+                      className={`
+                        px-3 py-1 rounded text-sm font-medium transition-all flex items-center gap-1
+                        ${isSelected
+                          ? 'bg-cyan-600 text-white'
+                          : 'bg-cyan-100 text-cyan-700 hover:bg-cyan-200'
+                        }
+                      `}
+                    >
+                      {isSelected ? (
+                        <>
+                          <Check className="w-4 h-4" />
+                          Selected
+                        </>
+                      ) : (
+                        'Select'
+                      )}
+                    </button>
+                  </div>
                 </div>
+                {confirmationMessage && (
+                  <div className="mt-2 text-green-600 text-sm">
+                    {confirmationMessage}
+                  </div>
+                )}
               </div>
             </div>
           </div>

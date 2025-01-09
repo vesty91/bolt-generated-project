@@ -4,4 +4,65 @@
 
     body {
       font-family: 'Roboto', sans-serif;
+      background-color: #f0f0f0; /* Light gray background */
+      color: #333; /* Dark gray text */
+    }
+
+    .dynamic-gradient-bg {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dynamic-gradient-bg::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, #1e1e1e, #333333, #474747, #5c5c5c); /* Modern dark gray gradient */
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .carousel-container {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-item {
+      flex: 0 0 100%;
     }
